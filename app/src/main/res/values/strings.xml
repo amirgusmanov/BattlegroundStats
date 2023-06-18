@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">BattlegroundStats</string>
+    <string name="enter_your_nickname_and_check_statistics">Enter your nickname and check statistics…</string>
+    <string name="player">Profile</string>
+    <string name="matches">Matches</string>
+    <string name="modes">Modes</string>
+    <string name="enter_player_name">Enter your nickname…</string>
+    <string name="search">search</string>
+    <string name="example">Example</string>
+    <string name="get_your_stats">Get your stats!</string>
+    <string name="total">total</string>
+    <string name="solo">solo</string>
+    <string name="duo">duo</string>
+    <string name="squad">squad</string>
+</resources>

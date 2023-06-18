@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_player"
+        android:enabled="true"
+        android:icon="@drawable/baseline_person_24"
+        android:title="@string/player" />
+    <item
+        android:id="@+id/recent_matches"
+        android:enabled="true"
+        android:icon="@drawable/baseline_schedule_24"
+        android:title="@string/matches" />
+    <item
+        android:id="@+id/game_modes"
+        android:enabled="true"
+        android:icon="@drawable/baseline_timeline_24"
+        android:title="@string/modes" />
+</menu>

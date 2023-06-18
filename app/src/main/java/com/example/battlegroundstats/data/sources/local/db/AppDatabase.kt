@@ -1,0 +1,29 @@
+package com.example.battlegroundstats.data.sources.local.db
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.battlegroundstats.data.sources.local.dao.PlayerLifetimeDataDao
+import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeDataEntity
+
+@Database(entities = [PlayerLifetimeDataEntity::class], version = 1)
+abstract class AppDatabase : RoomDatabase() {
+
+    abstract fun playerLifetimeDataDao(): PlayerLifetimeDataDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+
+        fun getDatabase(context: Context): AppDatabase = INSTANCE ?: synchronized(this) {
+            INSTANCE ?: buildDB(context).also { INSTANCE = it }
+        }
+
+        private fun buildDB(context: Context) = Room.databaseBuilder(
+            context.applicationContext,
+            AppDatabase::class.java,
+            "pubg_stats_database"
+        ).build()
+    }
+}

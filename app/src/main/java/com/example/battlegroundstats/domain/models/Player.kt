@@ -1,0 +1,27 @@
+package com.example.battlegroundstats.domain.models
+
+data class Player(
+    val id: Long,
+    val kills: Int,
+    val knocked: Int,
+    val deaths: Int,
+    val top10: Int,
+    val wins: Int,
+    val losses: Int,
+    val damageDealt: Double,
+    val drivenDistance: Double,
+    val walkedDistance: Double,
+    val swamDistance: Double,
+    val hKillStreak: Int,
+    val headshots: Int,
+    val assists: Int,
+    val teamKills: Int,
+    val suicides: Int,
+    val longestKill: Int,
+    val roadKills: Int,
+    val vehiclesDestroyed: Int,
+    val enemiesKnockedOut: Int,
+    val boosts: Int,
+    val heals: Int,
+    val teammatesRev: Int,
+)
