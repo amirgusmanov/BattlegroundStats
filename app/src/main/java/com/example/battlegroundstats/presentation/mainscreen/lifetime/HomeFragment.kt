@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
 
@@ -32,15 +33,15 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val nickname = arguments?.getString(ARG_NICKNAME)
-        if(!nickname.isNullOrEmpty()) {
+        if (!nickname.isNullOrEmpty()) {
             viewModel.searchPlayerByNickname("steam", nickname)
         }
         viewModel.player.observe(viewLifecycleOwner) { player ->
 //            binding.playerId.text = player.id
         }
-//        viewModel.playerLifetime.observe(viewLifecycleOwner) { player ->
-//            binding.playerStats.text = player.toString()
-//        }
+        viewModel.playerLifetime.observe(viewLifecycleOwner) { stats ->
+            Toast.makeText(requireContext(), "$stats", Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
@@ -53,5 +54,4 @@ class HomeFragment : Fragment() {
             return fragment
         }
     }
-
 }

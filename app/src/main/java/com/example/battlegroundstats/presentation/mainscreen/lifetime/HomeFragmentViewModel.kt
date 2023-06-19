@@ -9,8 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.battlegroundstats.data.sources.remote.api.ApiClient
 import com.example.battlegroundstats.data.sources.remote.service.PUBGApiService
-import com.example.battlegroundstats.domain.models.old.PlayerDataResponse
-import com.example.battlegroundstats.domain.models.old.PlayerStats
+import com.example.battlegroundstats.data.sources.remote.api.response.PlayerResponse
 import com.example.battlegroundstats.presentation.mainscreen.lifetime.HomeFragmentViewModelStatus.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,12 +24,12 @@ class HomeFragmentViewModel(private val pubgApiService: PUBGApiService) : ViewMo
     val status: LiveData<HomeFragmentViewModelStatus>
         get() = _status
 
-    private val _player: MutableLiveData<PlayerDataResponse> = MutableLiveData()
-    val player: LiveData<PlayerDataResponse>
+    private val _player: MutableLiveData<PlayerResponse> = MutableLiveData()
+    val player: LiveData<PlayerResponse>
         get() = _player
 
-    private val _playerLifetime: MutableLiveData<PlayerStats> = MutableLiveData()
-    val playerLifetime: LiveData<PlayerStats>
+    private val _playerLifetime: MutableLiveData<DuoStats> = MutableLiveData()
+    val playerLifetime: LiveData<DuoStats>
         get() = _playerLifetime
 
     private val _error: MutableLiveData<String> = MutableLiveData()
@@ -42,20 +41,30 @@ class HomeFragmentViewModel(private val pubgApiService: PUBGApiService) : ViewMo
             _status.value = LOADING
             withContext(Dispatchers.IO) {
                 try {
-                    val searchedPlayer: PlayerDataResponse = pubgApiService.searchPlayerByNickname(
+                    val searchedPlayer: PlayerResponse = pubgApiService.searchPlayerByNickname(
                         platform,
                         nickname
                     )
-                    val playerLifetimeStats: PlayerStats = pubgApiService.getPlayerStats(
+                    val playerLifetimeStatsResponse = pubgApiService.getPlayerStats(
                         platform,
                         searchedPlayer.id
                     )
-                    _playerLifetime.postValue(playerLifetimeStats)
+
+                    val duoStats = with(playerLifetimeStatsResponse.data.duoStats) {
+                        DuoStats(
+                            kills = kills,
+                            losses = losses
+                        )
+                    }
+                    _playerLifetime.postValue(duoStats)
                     _player.postValue(searchedPlayer)
                     _status.postValue(DONE)
                     Log.d("PLAYER ID", "Searched player: ${searchedPlayer.id}")
-                    Log.d("PLAYER STATS", "SEARCHED PLAYER: $playerLifetimeStats")
-                    Log.d("PLAYER MATCHES ID", "MATCHES: ${searchedPlayer.data[0].relationShips.matches.data}")
+                    Log.d("PLAYER STATS", "SEARCHED PLAYER: $playerLifetimeStatsResponse")
+                    Log.d(
+                        "PLAYER MATCHES ID",
+                        "MATCHES: ${searchedPlayer.data[0].relationShips.matches.data}"
+                    )
                 } catch (e: Exception) {
                     _status.postValue(ERROR)
                     _error.postValue(e.message)

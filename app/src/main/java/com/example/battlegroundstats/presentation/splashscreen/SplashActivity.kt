@@ -9,6 +9,13 @@ import android.os.Looper
 import com.example.battlegroundstats.R
 import com.example.battlegroundstats.presentation.searchscreen.SearchActivity
 
+/*
+ TODO:
+  1. Add a single navigation graph to rule them all (activities and fragments)
+  2. Put the arguments through the nav graph
+  3. (?) Remove `-screen` suffix
+  4.
+ */
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

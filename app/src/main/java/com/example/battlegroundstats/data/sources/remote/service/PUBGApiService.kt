@@ -1,10 +1,11 @@
 package com.example.battlegroundstats.data.sources.remote.service
 
-import com.example.battlegroundstats.domain.models.old.PlayerDataResponse
-import com.example.battlegroundstats.domain.models.old.PlayerStats
+import com.example.battlegroundstats.data.sources.remote.api.response.AttributesResponse
+import com.example.battlegroundstats.data.sources.remote.api.response.BaseResponse
+import com.example.battlegroundstats.data.sources.remote.api.response.PlayerResponse
+import com.example.battlegroundstats.data.sources.remote.api.response.PlayerStatsResponse
 import com.example.battlegroundstats.domain.models.old.RelationShipData
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -15,13 +16,13 @@ interface PUBGApiService {
     suspend fun searchPlayerByNickname(
         @Path("platform") platform: String,
         @Query("filter[playerNames]") playerName: String
-    ): PlayerDataResponse
+    ): PlayerResponse
 
     @GET("shards/{platform}/players/{playerId}/seasons/lifetime")
     suspend fun getPlayerStats(
         @Path("platform") platform: String,
         @Path("playerId") playerId: String
-    ): PlayerStats
+    ): BaseResponse<PlayerStatsResponse>
 
     @GET("shards/{platform}/matches/{matchId}")
     suspend fun getMatches(
