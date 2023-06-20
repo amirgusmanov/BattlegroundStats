@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.mainscreen.recentmatches
+package com.example.battlegroundstats.presentation.ui.main.recentmatches
 
 import androidx.lifecycle.ViewModel
 

@@ -15,13 +15,13 @@
         android:theme="@style/Theme.BattlegroundStats"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.mainscreen.MainActivity"
+            android:name=".presentation.ui.main.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.searchscreen.SearchActivity"
+            android:name=".presentation.ui.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.splashscreen.SplashActivity"
+            android:name=".presentation.ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

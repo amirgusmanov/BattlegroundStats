@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.searchscreen
+package com.example.battlegroundstats.presentation.ui.search
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.navigation.findNavController
 import com.example.battlegroundstats.R
 import com.example.battlegroundstats.databinding.ActivitySearchBinding
-import com.example.battlegroundstats.presentation.mainscreen.MainActivity
+import com.example.battlegroundstats.presentation.ui.main.MainActivity
 
 class SearchActivity : AppCompatActivity(), View.OnClickListener {
 

@@ -8,11 +8,11 @@ import com.example.battlegroundstats.domain.models.PlayerModeType
 
 class RemotePlayerMapper : ResponseMapper<BaseResponse<PlayerStatsResponse>, Player> {
 
+    //think about how to merge FPP and TPP objects
     override fun mapFromRemote(
         player: BaseResponse<PlayerStatsResponse>,
         mode: PlayerModeType
     ): Player {
-        //think about how to merge FPP and TPP objects
         val statsResponse = player.data.attributes.gameModes
         val baseStats = when (mode) {
             PlayerModeType.SOLO -> statsResponse.soloFPP
@@ -25,7 +25,6 @@ class RemotePlayerMapper : ResponseMapper<BaseResponse<PlayerStatsResponse>, Pla
     private fun mapBaseStatsToPlayer(baseStats: BaseStatsResponse): Player = Player(
         kills = baseStats.kills,
         knocked = baseStats.knocked,
-        deaths = baseStats.deaths,
         top10 = baseStats.top10,
         wins = baseStats.wins,
         losses = baseStats.losses,

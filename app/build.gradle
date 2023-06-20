@@ -58,6 +58,19 @@ dependencies {
     navGraph()
     retrofit2()
     room()
+    dagger()
+}
+
+private void dagger() {
+    def daggerVersion = "2.46.1"
+    dependencies.implementation "com.google.dagger:dagger:2.$daggerVersion"
+    dependencies.kapt "com.google.dagger:dagger-compiler:2.$daggerVersion"
+    dependencies.implementation "com.google.dagger:hilt-android:2.44"
+    dependencies.kapt "com.google.dagger:hilt-compiler:2.44"
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 private void lifecycle() {

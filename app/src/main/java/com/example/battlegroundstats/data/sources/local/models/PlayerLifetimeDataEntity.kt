@@ -6,10 +6,11 @@ import androidx.room.PrimaryKey
 
 open class DataEntity
 
+//TODO: change longest kill type to double and delete deaths attribute from constructor
 @Entity(tableName = "player_lifetime")
 data class PlayerLifetimeDataEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id") val id: Long,
+    @ColumnInfo("id") val id: Long = 0,
     @ColumnInfo("kills") val kills: Int,
     @ColumnInfo("dBNOs") val knocked: Int,
     @ColumnInfo("deaths") val deaths: Int,
@@ -37,10 +38,9 @@ data class PlayerLifetimeDataEntity(
 @Entity(tableName = "player_lifetime_solo")
 data class PlayerLifetimeSoloDataEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id") val id: Long,
+    @ColumnInfo("id") val id: Long = 0,
     @ColumnInfo("kills") val kills: Int,
     @ColumnInfo("dBNOs") val knocked: Int,
-    @ColumnInfo("deaths") val deaths: Int,
     @ColumnInfo("top_10s") val top10: Int,
     @ColumnInfo("wins") val wins: Int,
     @ColumnInfo("losses") val losses: Int,
@@ -53,19 +53,19 @@ data class PlayerLifetimeSoloDataEntity(
     @ColumnInfo("assists") val assists: Int,
     @ColumnInfo("teamkills") val teamKills: Int,
     @ColumnInfo("suicides") val suicides: Int,
-    @ColumnInfo("longest_kill") val longestKill: Int,
+    @ColumnInfo("longest_kill") val longestKill: Double,
     @ColumnInfo("roadkills") val roadKills: Int,
     @ColumnInfo("vehicles_destroyed") val vehiclesDestroyed: Int,
     @ColumnInfo("enemies_knocked_out") val enemiesKnockedOut: Int,
     @ColumnInfo("boosts") val boosts: Int,
     @ColumnInfo("heals") val heals: Int,
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
-)
+) : DataEntity()
 
 @Entity(tableName = "player_lifetime_duo")
 data class PlayerLifetimeDuoDataEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id") val id: Long,
+    @ColumnInfo("id") val id: Long = 0,
     @ColumnInfo("kills") val kills: Int,
     @ColumnInfo("dBNOs") val knocked: Int,
     @ColumnInfo("deaths") val deaths: Int,
@@ -88,12 +88,12 @@ data class PlayerLifetimeDuoDataEntity(
     @ColumnInfo("boosts") val boosts: Int,
     @ColumnInfo("heals") val heals: Int,
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
-)
+) : DataEntity()
 
 @Entity(tableName = "player_lifetime_squad")
 data class PlayerLifetimeSquadDataEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id") val id: Long,
+    @ColumnInfo("id") val id: Long = 0,
     @ColumnInfo("kills") val kills: Int,
     @ColumnInfo("dBNOs") val knocked: Int,
     @ColumnInfo("deaths") val deaths: Int,
@@ -116,4 +116,4 @@ data class PlayerLifetimeSquadDataEntity(
     @ColumnInfo("boosts") val boosts: Int,
     @ColumnInfo("heals") val heals: Int,
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
-)
+) : DataEntity()

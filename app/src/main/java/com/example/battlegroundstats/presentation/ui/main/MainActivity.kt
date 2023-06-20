@@ -1,11 +1,11 @@
-package com.example.battlegroundstats.presentation.mainscreen
+package com.example.battlegroundstats.presentation.ui.main
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.battlegroundstats.R
 import com.example.battlegroundstats.databinding.ActivityMainBinding
-import com.example.battlegroundstats.presentation.mainscreen.lifetime.HomeFragment
+import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

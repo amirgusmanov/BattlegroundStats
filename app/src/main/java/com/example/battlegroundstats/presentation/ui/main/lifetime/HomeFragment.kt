@@ -1,14 +1,15 @@
-package com.example.battlegroundstats.presentation.mainscreen.lifetime
+package com.example.battlegroundstats.presentation.ui.main.lifetime
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -17,7 +18,6 @@ class HomeFragment : Fragment() {
         get() = _binding!!
 
     private val viewModel: HomeFragmentViewModel by viewModels(
-        ownerProducer = { requireActivity() },
         factoryProducer = { HomeFragmentViewModel.factory() }
     )
 
@@ -29,18 +29,18 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val nickname = arguments?.getString(ARG_NICKNAME)
         if (!nickname.isNullOrEmpty()) {
-            viewModel.searchPlayerByNickname("steam", nickname)
+            viewModel.getPlayerStats(nickname, platform = "steam")
         }
-        viewModel.player.observe(viewLifecycleOwner) { player ->
-//            binding.playerId.text = player.id
-        }
-        viewModel.playerLifetime.observe(viewLifecycleOwner) { stats ->
-            Toast.makeText(requireContext(), "$stats", Toast.LENGTH_SHORT).show()
+        viewModel.playerStats.observe(viewLifecycleOwner) { playerFlow ->
+            viewLifecycleOwner.lifecycleScope.launch {
+                playerFlow.collect {
+                    Log.d("Player", "$it")
+                }
+            }
         }
     }
 

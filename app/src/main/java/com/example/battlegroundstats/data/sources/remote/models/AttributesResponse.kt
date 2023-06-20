@@ -2,27 +2,9 @@ package com.example.battlegroundstats.data.sources.remote.models
 
 import com.google.gson.annotations.SerializedName
 
-data class PlayerStatsResponse(
-    @SerializedName("attributes") val attributes: AttributesResponse
-) {
-    val soloStats: BaseStatsResponse
-        get() = attributes.gameModes.solo
-    val duoStats: BaseStatsResponse
-        get() = attributes.gameModes.duo
-    val squadStats: BaseStatsResponse
-        get() = attributes.gameModes.squad
+data class PlayerStatsResponse(@SerializedName("attributes") val attributes: AttributesResponse)
 
-    val soloFPPStats: BaseStatsResponse
-        get() = attributes.gameModes.soloFPP
-    val duoFPPStats: BaseStatsResponse
-        get() = attributes.gameModes.duoFPP
-    val squadFPPStats: BaseStatsResponse
-        get() = attributes.gameModes.squadFPP
-}
-
-data class AttributesResponse(
-    @SerializedName("gameModeStats") val gameModes: GameModesResponse
-)
+data class AttributesResponse(@SerializedName("gameModeStats") val gameModes: GameModesResponse)
 
 data class GameModesResponse(
     @SerializedName("duo") val duo: BaseStatsResponse,
@@ -36,7 +18,6 @@ data class GameModesResponse(
 data class BaseStatsResponse(
     @SerializedName("kills") val kills: Int,
     @SerializedName("dBNOs") val knocked: Int,
-    @SerializedName("losses") val deaths: Int,
     @SerializedName("top10s") val top10: Int,
     @SerializedName("wins") val wins: Int,
     @SerializedName("losses") val losses: Int,
@@ -49,7 +30,7 @@ data class BaseStatsResponse(
     @SerializedName("assists") val assists: Int,
     @SerializedName("teamKills") val teamKills: Int,
     @SerializedName("suicides") val suicides: Int,
-    @SerializedName("longestKill") val longestKill: Int,
+    @SerializedName("longestKill") val longestKill: Double,
     @SerializedName("roadKills") val roadKills: Int,
     @SerializedName("vehicleDestroys") val vehiclesDestroyed: Int,
     @SerializedName("boosts") val boosts: Int,

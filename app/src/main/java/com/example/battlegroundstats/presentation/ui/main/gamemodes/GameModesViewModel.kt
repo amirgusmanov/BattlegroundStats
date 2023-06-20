@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.mainscreen.gamemodes
+package com.example.battlegroundstats.presentation.ui.main.gamemodes
 
 import androidx.lifecycle.ViewModel
 

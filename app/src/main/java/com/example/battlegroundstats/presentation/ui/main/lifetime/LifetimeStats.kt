@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.mainscreen.lifetime
+package com.example.battlegroundstats.presentation.ui.main.lifetime
 
 //need to create all attributes
 data class LifetimeStats(

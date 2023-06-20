@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.mainscreen.gamemodes
+package com.example.battlegroundstats.presentation.ui.main.recentmatches
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,24 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.battlegroundstats.R
 
-class GameModesFragment : Fragment() {
+class RecentMatchesFragment : Fragment() {
 
     companion object {
-        fun newInstance() = GameModesFragment()
+        fun newInstance() = RecentMatchesFragment()
     }
 
-    private lateinit var viewModel: GameModesViewModel
+    private lateinit var viewModel: RecentMatchesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_game_modes, container, false)
+        return inflater.inflate(R.layout.fragment_recent_matches, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GameModesViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(RecentMatchesViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

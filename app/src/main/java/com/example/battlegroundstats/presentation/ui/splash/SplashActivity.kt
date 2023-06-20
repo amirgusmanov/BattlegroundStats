@@ -1,4 +1,4 @@
-package com.example.battlegroundstats.presentation.splashscreen
+package com.example.battlegroundstats.presentation.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import com.example.battlegroundstats.R
-import com.example.battlegroundstats.presentation.searchscreen.SearchActivity
+import com.example.battlegroundstats.presentation.ui.search.SearchActivity
 
 /*
  TODO:
