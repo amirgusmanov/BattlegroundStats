@@ -9,7 +9,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.battlegroundstats.data.sources.remote.api.ApiClient
 import com.example.battlegroundstats.data.sources.remote.service.PUBGApiService
-import com.example.battlegroundstats.data.sources.remote.api.response.PlayerResponse
+import com.example.battlegroundstats.data.sources.remote.models.PlayerResponse
 import com.example.battlegroundstats.presentation.mainscreen.lifetime.HomeFragmentViewModelStatus.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,8 +28,8 @@ class HomeFragmentViewModel(private val pubgApiService: PUBGApiService) : ViewMo
     val player: LiveData<PlayerResponse>
         get() = _player
 
-    private val _playerLifetime: MutableLiveData<DuoStats> = MutableLiveData()
-    val playerLifetime: LiveData<DuoStats>
+    private val _playerLifetime: MutableLiveData<LifetimeStats> = MutableLiveData()
+    val playerLifetime: LiveData<LifetimeStats>
         get() = _playerLifetime
 
     private val _error: MutableLiveData<String> = MutableLiveData()
@@ -50,21 +50,17 @@ class HomeFragmentViewModel(private val pubgApiService: PUBGApiService) : ViewMo
                         searchedPlayer.id
                     )
 
-                    val duoStats = with(playerLifetimeStatsResponse.data.duoStats) {
-                        DuoStats(
+                    val soloFPPStats = with(playerLifetimeStatsResponse.data.soloFPPStats) {
+                        LifetimeStats(
                             kills = kills,
-                            losses = losses
+                            damageDealt = damageDealt
                         )
                     }
-                    _playerLifetime.postValue(duoStats)
+                    _playerLifetime.postValue(soloFPPStats)
                     _player.postValue(searchedPlayer)
                     _status.postValue(DONE)
                     Log.d("PLAYER ID", "Searched player: ${searchedPlayer.id}")
-                    Log.d("PLAYER STATS", "SEARCHED PLAYER: $playerLifetimeStatsResponse")
-                    Log.d(
-                        "PLAYER MATCHES ID",
-                        "MATCHES: ${searchedPlayer.data[0].relationShips.matches.data}"
-                    )
+                    Log.d("PLAYER STATS", "SEARCHED PLAYER: $soloFPPStats")
                 } catch (e: Exception) {
                     _status.postValue(ERROR)
                     _error.postValue(e.message)

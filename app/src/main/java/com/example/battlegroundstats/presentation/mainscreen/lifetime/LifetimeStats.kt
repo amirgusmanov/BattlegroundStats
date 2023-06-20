@@ -1,6 +1,7 @@
 package com.example.battlegroundstats.presentation.mainscreen.lifetime
 
-data class DuoStats(
+//need to create all attributes
+data class LifetimeStats(
     val kills: Int,
-    val losses: Int
+    val damageDealt: Double,
 )

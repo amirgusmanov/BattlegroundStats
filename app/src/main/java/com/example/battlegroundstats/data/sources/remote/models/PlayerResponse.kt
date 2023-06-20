@@ -1,6 +1,5 @@
-package com.example.battlegroundstats.data.sources.remote.api.response
+package com.example.battlegroundstats.data.sources.remote.models
 
-import com.example.battlegroundstats.domain.models.old.RelationShipData
 import com.google.gson.annotations.SerializedName
 
 data class PlayerResponse(@SerializedName("data") val data: List<PlayerDataResponse>) {
@@ -11,5 +10,4 @@ data class PlayerResponse(@SerializedName("data") val data: List<PlayerDataRespo
 data class PlayerDataResponse(
     @SerializedName("type") val type: String,
     @SerializedName("id") val id: String,
-    @SerializedName("relationships") val relationShips: RelationShipData
 )

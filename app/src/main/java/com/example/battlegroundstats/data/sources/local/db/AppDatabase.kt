@@ -6,8 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.battlegroundstats.data.sources.local.dao.PlayerLifetimeDataDao
 import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeDataEntity
+import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeDuoDataEntity
+import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeSoloDataEntity
+import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeSquadDataEntity
 
-@Database(entities = [PlayerLifetimeDataEntity::class], version = 1)
+@Database(
+    entities = [PlayerLifetimeDataEntity::class,
+        PlayerLifetimeSoloDataEntity::class,
+        PlayerLifetimeDuoDataEntity::class,
+        PlayerLifetimeSquadDataEntity::class
+    ], version = 1, exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun playerLifetimeDataDao(): PlayerLifetimeDataDao

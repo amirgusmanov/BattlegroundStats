@@ -1,17 +1,14 @@
 package com.example.battlegroundstats.data.sources.remote.service
 
-import com.example.battlegroundstats.data.sources.remote.api.response.AttributesResponse
-import com.example.battlegroundstats.data.sources.remote.api.response.BaseResponse
-import com.example.battlegroundstats.data.sources.remote.api.response.PlayerResponse
-import com.example.battlegroundstats.data.sources.remote.api.response.PlayerStatsResponse
-import com.example.battlegroundstats.domain.models.old.RelationShipData
+import com.example.battlegroundstats.data.sources.remote.models.BaseResponse
+import com.example.battlegroundstats.data.sources.remote.models.PlayerResponse
+import com.example.battlegroundstats.data.sources.remote.models.PlayerStatsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PUBGApiService {
 
-    //get methods return type are time solution for test
     @GET("shards/{platform}/players")
     suspend fun searchPlayerByNickname(
         @Path("platform") platform: String,
@@ -28,6 +25,6 @@ interface PUBGApiService {
     suspend fun getMatches(
         @Path("platform") platform: String,
         @Path("matchId") matchId: String
-    ): RelationShipData
+    )
 
 }
