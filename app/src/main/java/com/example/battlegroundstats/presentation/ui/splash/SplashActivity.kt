@@ -2,12 +2,12 @@ package com.example.battlegroundstats.presentation.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.example.battlegroundstats.R
-import com.example.battlegroundstats.presentation.ui.search.SearchActivity
+import com.example.battlegroundstats.presentation.ui.main.MainActivity
 
 /*
  TODO:
@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
          * switch the home fragment on the main activity
          */
         Handler(Looper.myLooper()!!).postDelayed({
-            startActivity(Intent(this, SearchActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 2000)
     }

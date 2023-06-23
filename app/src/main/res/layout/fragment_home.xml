@@ -22,25 +22,32 @@
         app:tabUnboundedRipple="false"
         tools:ignore="SpeakableTextPresentCheck">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/total" />
+<!--        <view-->
+<!--            class="com.google.android.material.tabs.TabLayout$TabView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/solo" />
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/total" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/duo" />
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/solo" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/squad" />
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/duo" />-->
+
+<!--            <com.google.android.material.tabs.TabItem-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/squad" />-->
+
+<!--        </view>-->
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -154,13 +161,13 @@
                 android:id="@+id/stats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardview"
                 android:layout_margin="16dp"
-                android:textSize="36sp"
+                android:fontFamily="@font/custom_font"
                 android:text="PlayerLifetimeStats:"
                 android:textColor="@color/white"
-                android:fontFamily="@font/custom_font"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardview"
                 tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

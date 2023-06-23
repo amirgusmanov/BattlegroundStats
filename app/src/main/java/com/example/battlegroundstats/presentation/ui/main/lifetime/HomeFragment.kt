@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
+    private val args: HomeFragmentArgs by navArgs()
     private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = _binding!!
@@ -31,8 +33,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nickname = arguments?.getString(ARG_NICKNAME)
-        if (!nickname.isNullOrEmpty()) {
+        val nickname = args.nickname
+        if (nickname.isNotEmpty()) {
             viewModel.getPlayerStats(nickname, platform = "steam")
         }
         viewModel.playerStats.observe(viewLifecycleOwner) { playerFlow ->
@@ -44,14 +46,4 @@ class HomeFragment : Fragment() {
         }
     }
 
-    companion object {
-        private const val ARG_NICKNAME = "nickname"
-
-        fun newInstance(nickname: String): HomeFragment {
-            val fragment = HomeFragment()
-            val args = Bundle()
-            args.putString(ARG_NICKNAME, nickname).also { fragment.arguments = args }
-            return fragment
-        }
-    }
 }

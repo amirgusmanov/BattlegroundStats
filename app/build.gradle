@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
     lifecycle()
-    navGraph()
+    navigation()
     retrofit2()
     room()
     dagger()
@@ -74,13 +74,13 @@ kapt {
 }
 
 private void lifecycle() {
-    def lifecycleVersion = "2.6.1"
+    def lifecycleVersion = "2.6.0"
     //noinspection GradleDependency
     dependencies.implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     dependencies.implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 }
 
-private void navGraph() {
+private void navigation() {
     def nav_version = "2.5.3"
     //noinspection GradleDependency
     dependencies.implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")

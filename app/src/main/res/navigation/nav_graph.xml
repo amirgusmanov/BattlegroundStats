@@ -3,12 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/searchFragment">
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.battlegroundstats.presentation.ui.main.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_send_name"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_out" />
+    </fragment>
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <argument
+            android:name="nickname"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recentMatchesFragment"
+        android:name="com.example.battlegroundstats.presentation.ui.main.recentmatches.RecentMatchesFragment"
+        android:label="fragment_recent_matches"
+        tools:layout="@layout/fragment_recent_matches" />
+
+    <fragment
+        android:id="@+id/gameModesFragment"
+        android:name="com.example.battlegroundstats.presentation.ui.main.gamemodes.GameModesFragment"
+        android:label="fragment_game_modes"
+        tools:layout="@layout/fragment_game_modes" />
 
 </navigation>
