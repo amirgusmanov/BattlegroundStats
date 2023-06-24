@@ -22,32 +22,25 @@
         app:tabUnboundedRipple="false"
         tools:ignore="SpeakableTextPresentCheck">
 
-<!--        <view-->
-<!--            class="com.google.android.material.tabs.TabLayout$TabView"-->
+<!--        <com.google.android.material.tabs.TabItem-->
 <!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/total" />-->
 
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/total" />-->
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/solo" />-->
 
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/solo" />-->
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/duo" />-->
 
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/duo" />-->
-
-<!--            <com.google.android.material.tabs.TabItem-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="@string/squad" />-->
-
-<!--        </view>-->
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/squad" />-->
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -64,9 +57,8 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
                 android:layout_margin="16dp"
-                android:minHeight="200dp"
                 android:orientation="vertical"
                 android:outlineAmbientShadowColor="@color/transparent_background"
                 android:outlineSpotShadowColor="@color/transparent_background"
@@ -75,100 +67,232 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UnusedAttribute">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/wins"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|start"
-                    android:layout_margin="16dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="999"
-                    android:textColor="@color/white"
-                    android:textSize="36sp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|start"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="64dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="WINS"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/top10s"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|end"
-                    android:layout_margin="16dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="999"
-                    android:textColor="@color/white"
-                    android:textSize="36sp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top|end"
-                    android:layout_marginTop="64dp"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="TOP 10s"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.divider.MaterialDivider
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="8dp" />
+                    android:layout_height="match_parent">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/games_played_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="60dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="Games Played: 10"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    tools:ignore="HardcodedText" />
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/kd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/custom_font"
+                        android:text="Kill Death "
+                        android:textColor="@color/white"
+                        android:textSize="32sp"
+                        app:layout_constraintBottom_toTopOf="@id/kills"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/pie_chart"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/time_played_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="@font/custom_font"
-                    android:text="Time Played: 5 hours"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    tools:ignore="HardcodedText" />
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pie_chart"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/kd"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/kills"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/custom_font"
+                        android:text="999"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toTopOf="@+id/deaths"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/pie_chart"
+                        app:layout_constraintTop_toBottomOf="@+id/kd"
+                        tools:ignore="HardcodedText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/custom_font"
+                        android:text="KILLS"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@id/kills"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/kills"
+                        app:layout_constraintTop_toTopOf="@id/kills"
+                        tools:ignore="HardcodedText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/deaths"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:fontFamily="@font/custom_font"
+                        android:text="999"
+                        android:textColor="@color/white"
+                        android:textSize="36sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/pie_chart"
+                        app:layout_constraintTop_toBottomOf="@+id/kills"
+                        tools:ignore="HardcodedText" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/custom_font"
+                        android:text="DEATHS"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/deaths"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/deaths"
+                        app:layout_constraintTop_toTopOf="@+id/deaths"
+                        tools:ignore="HardcodedText" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/stats"
+                android:id="@+id/header_title_hk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:fontFamily="@font/custom_font"
+                android:text="Highest Killstreak"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toTopOf="@+id/highest_killstreak"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardview"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/highest_killstreak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fontFamily="@font/custom_font"
-                android:text="PlayerLifetimeStats:"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="64sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/header_title_hk"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_zero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/highest_killstreak" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/damage_dealt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="DAMAGE DEALT"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/damage_dealt_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_zero"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/damage_dealt_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/divider_one"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/damage_dealt"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/damage_dealt_value" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/wins"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
                 android:textColor="@color/white"
                 android:textSize="36sp"
+                app:layout_constraintEnd_toStartOf="@+id/wins_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardview"
+                app:layout_constraintTop_toBottomOf="@+id/divider_one"
                 tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/wins_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/custom_font"
+                android:text="wins"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/wins"
+                app:layout_constraintEnd_toStartOf="@+id/win_lose_pie_chart"
+                app:layout_constraintStart_toEndOf="@id/wins"
+                app:layout_constraintTop_toTopOf="@+id/wins"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/losses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="@+id/win_lose_pie_chart"
+                app:layout_constraintEnd_toStartOf="@+id/wins_text"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/losses_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/custom_font"
+                android:text="losses"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/losses"
+                app:layout_constraintEnd_toStartOf="@+id/win_lose_pie_chart"
+                app:layout_constraintStart_toEndOf="@id/wins"
+                app:layout_constraintTop_toTopOf="@+id/losses"
+                tools:ignore="HardcodedText" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/win_lose_pie_chart"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/wins_text"
+                app:layout_constraintTop_toTopOf="@+id/divider_one" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
