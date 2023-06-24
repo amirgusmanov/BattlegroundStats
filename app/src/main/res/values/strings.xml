@@ -12,4 +12,8 @@
     <string name="solo">solo</string>
     <string name="duo">duo</string>
     <string name="squad">squad</string>
+    <string name="steam">steam</string>
+    <string name="xbox">xbox</string>
+    <string name="playstation">playstation</string>
+    <string name="enter_pubg_username_not_your_steam_psn_xbox_name">Enter PUBG username, NOT your steam/psn/xbox name!</string>
 </resources>

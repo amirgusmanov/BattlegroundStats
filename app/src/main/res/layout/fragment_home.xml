@@ -7,48 +7,25 @@
     android:background="@color/background_color"
     tools:context=".presentation.ui.main.lifetime.HomeFragment">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        style="@style/Widget.Material3.TabLayout.OnSurface"
-        android:layout_width="match_parent"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent_background"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tabIndicatorColor="@color/white"
-        app:tabMode="fixed"
-        app:tabRippleColor="@color/background_color"
-        app:tabSelectedTextColor="@color/harvestGold"
-        app:tabTextColor="@color/white"
-        app:tabUnboundedRipple="false"
-        tools:ignore="SpeakableTextPresentCheck">
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/total" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/solo" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/duo" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/squad" />-->
-
-    </com.google.android.material.tabs.TabLayout>
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -78,7 +55,7 @@
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/custom_font"
                         android:text="Kill Death "
-                        android:textColor="@color/white"
+                        android:textColor="@color/harvestGold"
                         android:textSize="32sp"
                         app:layout_constraintBottom_toTopOf="@id/kills"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +79,7 @@
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/custom_font"
                         android:text="999"
-                        android:textColor="@color/white"
+                        android:textColor="@color/kill"
                         android:textSize="36sp"
                         app:layout_constraintBottom_toTopOf="@+id/deaths"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -130,7 +107,7 @@
                         android:layout_marginEnd="24dp"
                         android:fontFamily="@font/custom_font"
                         android:text="999"
-                        android:textColor="@color/white"
+                        android:textColor="@color/death"
                         android:textSize="36sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -170,6 +147,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardview"
                 tools:ignore="HardcodedText" />
 
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/hkImg"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/skull"
+                app:layout_constraintBottom_toBottomOf="@+id/highest_killstreak"
+                app:layout_constraintEnd_toStartOf="@+id/highest_killstreak"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/highest_killstreak" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/highest_killstreak"
                 android:layout_width="wrap_content"
@@ -177,10 +165,10 @@
                 android:layout_margin="16dp"
                 android:fontFamily="@font/custom_font"
                 android:text="999"
-                android:textColor="@color/white"
+                android:textColor="@color/harvestGold"
                 android:textSize="64sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hkImg"
                 app:layout_constraintTop_toBottomOf="@+id/header_title_hk"
                 tools:ignore="HardcodedText" />
 
@@ -197,14 +185,25 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fontFamily="@font/custom_font"
-                android:text="DAMAGE DEALT"
-                android:textColor="@color/white"
+                android:text="DAMAGE GIVEN"
+                android:textColor="@color/harvestGold"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@id/damage_dealt_value"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/divider_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_zero"
                 tools:ignore="HardcodedText" />
+
+            <View
+                android:id="@+id/divider_vertical"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/divider_one"
+                app:layout_constraintEnd_toStartOf="@+id/top10"
+                app:layout_constraintStart_toEndOf="@id/damage_dealt"
+                app:layout_constraintTop_toBottomOf="@id/divider_zero" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/damage_dealt_value"
@@ -215,9 +214,38 @@
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/divider_one"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/damage_dealt"
+                app:layout_constraintStart_toStartOf="@+id/damage_dealt"
                 app:layout_constraintTop_toBottomOf="@id/damage_dealt"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/top10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="TOP 10"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/damage_dealt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/divider_vertical"
+                app:layout_constraintTop_toTopOf="@+id/damage_dealt"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/top10_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/divider_one"
+                app:layout_constraintEnd_toEndOf="@+id/top10"
+                app:layout_constraintStart_toStartOf="@+id/top10"
+                app:layout_constraintTop_toBottomOf="@+id/top10"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.divider.MaterialDivider
@@ -234,11 +262,11 @@
                 android:layout_margin="16dp"
                 android:fontFamily="@font/custom_font"
                 android:text="999"
-                android:textColor="@color/white"
+                android:textColor="@color/kill"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toStartOf="@+id/wins_text"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_one"
+                app:layout_constraintTop_toTopOf="@+id/win_lose_pie_chart"
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -263,7 +291,7 @@
                 android:layout_margin="16dp"
                 android:fontFamily="@font/custom_font"
                 android:text="999"
-                android:textColor="@color/white"
+                android:textColor="@color/death"
                 android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="@+id/win_lose_pie_chart"
                 app:layout_constraintEnd_toStartOf="@+id/wins_text"
@@ -290,9 +318,345 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_margin="16dp"
+                app:layout_constraintBottom_toTopOf="@id/divider_two"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/wins_text"
                 app:layout_constraintTop_toTopOf="@+id/divider_one" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/win_lose_pie_chart" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/knocked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="enemy knocked"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/headshots"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_two"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/knocked_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/knocked"
+                app:layout_constraintStart_toStartOf="@id/knocked"
+                app:layout_constraintTop_toBottomOf="@id/knocked"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/headshots"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="headshots"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/knocked"
+                app:layout_constraintEnd_toEndOf="@id/assists"
+                app:layout_constraintStart_toEndOf="@+id/knocked"
+                app:layout_constraintTop_toTopOf="@id/knocked"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/headshots_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/headshots"
+                app:layout_constraintStart_toStartOf="@id/headshots"
+                app:layout_constraintTop_toBottomOf="@id/headshots"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/assists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="assists"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/headshots"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/headshots"
+                app:layout_constraintTop_toTopOf="@id/headshots"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/assists_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/assists"
+                app:layout_constraintStart_toStartOf="@id/assists"
+                app:layout_constraintTop_toBottomOf="@id/assists"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_three"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/knocked_val" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/driven_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="driven distance"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_three"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/driven_distance_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999 m"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/driven_distance"
+                app:layout_constraintStart_toStartOf="@id/driven_distance"
+                app:layout_constraintTop_toBottomOf="@id/driven_distance"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/swam_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="swam distance"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/driven_distance"
+                app:layout_constraintEnd_toStartOf="@+id/walk_distance"
+                app:layout_constraintStart_toEndOf="@id/driven_distance"
+                app:layout_constraintTop_toTopOf="@id/driven_distance"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/swam_distance_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999 m"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/swam_distance"
+                app:layout_constraintStart_toStartOf="@id/swam_distance"
+                app:layout_constraintTop_toBottomOf="@id/swam_distance"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/walk_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="walked distance"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/swam_distance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/swam_distance"
+                app:layout_constraintTop_toTopOf="@id/swam_distance"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/walk_distance_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999 m"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@+id/walk_distance"
+                app:layout_constraintStart_toStartOf="@id/walk_distance"
+                app:layout_constraintTop_toBottomOf="@id/walk_distance"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_four"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/driven_distance_val" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/longest_kill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="longest kill"
+                android:textColor="@color/harvestGold"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_four"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/longest_kill_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="999 m"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="@+id/longest_kill"
+                app:layout_constraintStart_toStartOf="@+id/longest_kill"
+                app:layout_constraintTop_toBottomOf="@+id/longest_kill"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_five"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintTop_toBottomOf="@id/longest_kill_val" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/teamkills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="teamkills"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/suicides"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_five"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/teamkills_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/teamkills"
+                app:layout_constraintStart_toStartOf="@id/teamkills"
+                app:layout_constraintTop_toBottomOf="@id/teamkills"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/suicides"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="suicides"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/teamkills"
+                app:layout_constraintEnd_toStartOf="@+id/roadKills"
+                app:layout_constraintStart_toEndOf="@+id/teamkills"
+                app:layout_constraintTop_toTopOf="@id/teamkills"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/suicides_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/suicides"
+                app:layout_constraintStart_toStartOf="@id/suicides"
+                app:layout_constraintTop_toBottomOf="@id/suicides"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/roadKills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="roadkills"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/suicides"
+                app:layout_constraintEnd_toStartOf="@+id/boosts"
+                app:layout_constraintStart_toEndOf="@+id/suicides"
+                app:layout_constraintTop_toTopOf="@id/suicides"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/roadKills_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/roadKills"
+                app:layout_constraintStart_toStartOf="@id/roadKills"
+                app:layout_constraintTop_toBottomOf="@id/roadKills"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/boosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/custom_font"
+                android:text="boosts"
+                android:textColor="@color/harvestGold"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@id/roadKills"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/roadKills"
+                app:layout_constraintTop_toTopOf="@id/roadKills"
+                tools:ignore="HardcodedText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/boosts_val"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom_font"
+                android:text="999"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="@id/boosts"
+                app:layout_constraintStart_toStartOf="@id/boosts"
+                app:layout_constraintTop_toBottomOf="@id/boosts"
+                tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

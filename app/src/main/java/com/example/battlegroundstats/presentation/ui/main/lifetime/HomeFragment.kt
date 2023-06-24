@@ -42,9 +42,18 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val nickname = args.nickname
+        val platform = args.platform
         if (nickname.isNotEmpty()) {
-            viewModel.getPlayerStats(nickname, platform = "steam")
+            viewModel.getPlayerStats(nickname, platform)
         }
+
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            when (status!!) {
+                HomeFragmentStatus.LOADING -> hideUI()
+                HomeFragmentStatus.DONE -> showUI()
+            }
+        }
+
         val pieChartKD: PieChart = binding.pieChart
         val pieChartWL: PieChart = binding.winLosePieChart
         pieChartKD.setPieChart()
@@ -55,7 +64,26 @@ class HomeFragment : Fragment() {
                 playerFlow.collect {
                     Log.d("Player", "$it")
 
-                    bind(it.kills, it.losses, it.hKillStreak, it.damageDealt, it.wins, it.losses)
+                    bind(
+                        it.kills,
+                        it.losses,
+                        it.hKillStreak,
+                        it.damageDealt,
+                        it.wins,
+                        it.losses,
+                        it.top10,
+                        it.knocked,
+                        it.headshots,
+                        it.assists,
+                        it.drivenDistance,
+                        it.swamDistance,
+                        it.walkedDistance,
+                        it.longestKill,
+                        it.teamKills,
+                        it.suicides,
+                        it.roadKills,
+                        it.boosts
+                    )
 
                     val entriesKD = listOf(
                         PieEntry(it.kills.toFloat(), "Kills"),
@@ -92,15 +120,40 @@ class HomeFragment : Fragment() {
         death: Int,
         hKillStreak: Int,
         dmgDealt: Double,
-        wins_text: Int,
-        losses_text: Int
+        winsText: Int,
+        lossesText: Int,
+        top10Val: Int,
+        knocked: Int,
+        headshots: Int,
+        assists: Int,
+        drivenDist: Double,
+        swamDist: Double,
+        walkDist: Double,
+        longestKill: Double,
+        teamKill: Int,
+        suicide: Int,
+        roadKill: Int,
+        boosts: Int
     ) = with(binding) {
         kills.text = kill.toString()
         deaths.text = death.toString()
         highestKillstreak.text = hKillStreak.toString()
         damageDealtValue.text = dmgDealt.toString()
-        wins.text = wins_text.toString()
-        losses.text = losses_text.toString()
+        wins.text = winsText.toString()
+        losses.text = lossesText.toString()
+        top10Value.text = top10Val.toString()
+        knockedVal.text = knocked.toString()
+        headshotsVal.text = headshots.toString()
+        assistsVal.text = assists.toString()
+        drivenDistanceVal.text = "$drivenDist m"
+        swamDistanceVal.text = "$swamDist m"
+        walkDistanceVal.text = "$walkDist m"
+        longestKillVal.text = "$longestKill m"
+        teamkillsVal.text = teamKill.toString()
+        suicidesVal.text = suicide.toString()
+        roadKillsVal.text = roadKill.toString()
+        boostsVal.text = boosts.toString()
+
 
         val kdVal: Float = kill.toFloat() / death.toFloat()
         val formatted = String.format("%.2f", kdVal)
@@ -120,6 +173,16 @@ class HomeFragment : Fragment() {
         colors = clr
         selectionShift = 0f
         valueTextSize = 12f
+    }
+
+    private fun showUI() = with(binding) {
+        progressBar.visibility = View.GONE
+        binding.scrollView.visibility = View.VISIBLE
+    }
+
+    private fun hideUI() = with(binding) {
+        progressBar.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.INVISIBLE
     }
 
 }

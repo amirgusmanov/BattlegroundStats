@@ -26,6 +26,11 @@
             android:name="nickname"
             android:defaultValue=""
             app:argType="string" />
+        <argument
+            android:name="platform"
+            android:defaultValue="steam"
+            app:argType="string"
+            />
     </fragment>
 
     <fragment

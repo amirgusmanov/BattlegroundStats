@@ -32,7 +32,13 @@ class SearchFragment : Fragment(), View.OnClickListener {
         when (v?.id) {
             R.id.search_button -> {
                 val nickname = binding.editText.text.toString().trim()
-                val action = SearchFragmentDirections.actionSendName(nickname)
+                val platform: String = when (binding.radioBtnGroup.checkedRadioButtonId) {
+                    R.id.steam_btn -> "steam"
+                    R.id.psn_btn -> "psn"
+                    R.id.xbox_btn -> "xbox"
+                    else -> { "steam" }
+                }
+                val action = SearchFragmentDirections.actionSendName(nickname, platform)
                 findNavController().navigate(action)
             }
         }
