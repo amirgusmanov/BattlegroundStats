@@ -22,7 +22,7 @@ interface PUBGApiService {
     ): BaseResponse<PlayerStatsResponse>
 
     @GET("shards/{platform}/matches/{matchId}")
-    suspend fun getMatches(
+    suspend fun getMatch(
         @Path("platform") platform: String,
         @Path("matchId") matchId: String
     )

@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         when (item.itemId) {
             R.id.navigation_player -> navController.navigate(R.id.homeFragment)
             R.id.recent_matches -> navController.navigate(R.id.recentMatchesFragment)
-            R.id.game_modes -> navController.navigate(R.id.gameModesFragment)
         }
         return true
     }

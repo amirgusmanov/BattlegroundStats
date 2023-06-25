@@ -13,7 +13,7 @@ class RecentMatchesFragment : Fragment() {
         fun newInstance() = RecentMatchesFragment()
     }
 
-    private lateinit var viewModel: RecentMatchesViewModel
+    private lateinit var viewModel: MatchesViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -10,9 +10,4 @@
         android:enabled="true"
         android:icon="@drawable/baseline_schedule_24"
         android:title="@string/matches" />
-    <item
-        android:id="@+id/game_modes"
-        android:enabled="true"
-        android:icon="@drawable/baseline_timeline_24"
-        android:title="@string/modes" />
 </menu>

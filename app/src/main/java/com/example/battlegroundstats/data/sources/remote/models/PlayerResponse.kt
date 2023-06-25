@@ -10,4 +10,13 @@ data class PlayerResponse(@SerializedName("data") val data: List<PlayerDataRespo
 data class PlayerDataResponse(
     @SerializedName("type") val type: String,
     @SerializedName("id") val id: String,
+    @SerializedName("relationships") val relationships: List<RelationResponse>
+)
+
+data class RelationResponse(
+    @SerializedName("matches") val matches: MatchesResponse
+)
+
+data class MatchesResponse(
+    @SerializedName("data") val data: List<String>
 )

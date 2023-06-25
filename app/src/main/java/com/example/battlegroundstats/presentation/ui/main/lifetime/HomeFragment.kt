@@ -40,7 +40,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val nickname = args.nickname
         val platform = args.platform
         if (nickname.isNotEmpty()) {
@@ -61,37 +60,37 @@ class HomeFragment : Fragment() {
 
         viewModel.playerStats.observe(viewLifecycleOwner) { playerFlow ->
             viewLifecycleOwner.lifecycleScope.launch {
-                playerFlow.collect {
-                    Log.d("Player", "$it")
+                playerFlow.collect { player ->
+                    Log.d("Player", "$player")
 
                     bind(
-                        it.kills,
-                        it.losses,
-                        it.hKillStreak,
-                        it.damageDealt,
-                        it.wins,
-                        it.losses,
-                        it.top10,
-                        it.knocked,
-                        it.headshots,
-                        it.assists,
-                        it.drivenDistance,
-                        it.swamDistance,
-                        it.walkedDistance,
-                        it.longestKill,
-                        it.teamKills,
-                        it.suicides,
-                        it.roadKills,
-                        it.boosts
+                        player.kills,
+                        player.losses,
+                        player.hKillStreak,
+                        player.damageDealt,
+                        player.wins,
+                        player.losses,
+                        player.top10,
+                        player.knocked,
+                        player.headshots,
+                        player.assists,
+                        player.drivenDistance,
+                        player.swamDistance,
+                        player.walkedDistance,
+                        player.longestKill,
+                        player.teamKills,
+                        player.suicides,
+                        player.roadKills,
+                        player.boosts
                     )
 
                     val entriesKD = listOf(
-                        PieEntry(it.kills.toFloat(), "Kills"),
-                        PieEntry(it.losses.toFloat(), "Deaths")
+                        PieEntry(player.kills.toFloat(), "Kills"),
+                        PieEntry(player.losses.toFloat(), "Deaths")
                     )
                     val entriesWL = listOf(
-                        PieEntry(it.wins.toFloat(), "Wins"),
-                        PieEntry(it.losses.toFloat(), "Losses")
+                        PieEntry(player.wins.toFloat(), "Wins"),
+                        PieEntry(player.losses.toFloat(), "Losses")
                     )
                     val colors = listOf(
                         ContextCompat.getColor(requireContext(), R.color.kill),

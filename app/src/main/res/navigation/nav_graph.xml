@@ -35,14 +35,8 @@
 
     <fragment
         android:id="@+id/recentMatchesFragment"
-        android:name="com.example.battlegroundstats.presentation.ui.main.recentmatches.RecentMatchesFragment"
+        android:name="com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchesFragment"
         android:label="fragment_recent_matches"
-        tools:layout="@layout/fragment_recent_matches" />
-
-    <fragment
-        android:id="@+id/gameModesFragment"
-        android:name="com.example.battlegroundstats.presentation.ui.main.gamemodes.GameModesFragment"
-        android:label="fragment_game_modes"
-        tools:layout="@layout/fragment_game_modes" />
+        tools:layout="@layout/fragment_matches_list" />
 
 </navigation>
