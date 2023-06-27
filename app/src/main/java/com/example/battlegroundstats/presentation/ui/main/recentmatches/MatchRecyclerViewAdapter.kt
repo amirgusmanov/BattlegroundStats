@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.battlegroundstats.databinding.FragmentMatchBinding
 import com.example.battlegroundstats.databinding.ViewEmptyItemBinding
 import com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchRecyclerViewAdapter.MatchesViewHolder
@@ -70,6 +73,28 @@ class MatchRecyclerViewAdapter(
             damage.text = "damage ${match.damageDealt}"
             gameMode.text = match.gameMode.replace('-', ' ')
             createdTime.text = match.matchTimeCreated
+
+            val mapImageUrl = when (match.mapName) {
+                ERANGEL_REMASTERED, ERANGEL_MAIN -> erangel_url
+                PARAMO -> paramo_url
+                MIRAMAR -> miramar_url
+                VIKENDI -> vikendi_url
+                HAVEN -> haven_url
+                DESTON -> deston_url
+                CAMP_JACKAL, SANHOK -> camp_url
+                KARAKIN -> karakin_url
+                TAEGO -> taego_url
+                else -> ""
+            }
+
+            if (mapImageUrl.isNotEmpty()) {
+                Glide.with(mapImage)
+                    .load(mapImageUrl)
+                    .apply(RequestOptions().transform(RoundedCorners(16)))
+                    .into(mapImage)
+            } else {
+                mapImage.setImageDrawable(null)
+            }
         }
     }
 

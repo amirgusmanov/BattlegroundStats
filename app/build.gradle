@@ -60,9 +60,15 @@ dependencies {
 
     lifecycle()
     navigation()
+    glide()
     retrofit2()
     room()
     dagger()
+}
+
+private void glide() {
+    dependencies.implementation 'com.github.bumptech.glide:glide:4.14.2'
+    dependencies.annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 }
 
 private void dagger() {
