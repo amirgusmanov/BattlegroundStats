@@ -1,5 +1,6 @@
 package com.example.battlegroundstats.data.sources.remote.api
 
+import com.example.battlegroundstats.BuildConfig.PUBG_KEY
 import com.example.battlegroundstats.data.sources.remote.auth.PUBGAuthInterceptor
 import com.example.battlegroundstats.data.sources.remote.service.PUBGApiService
 import okhttp3.OkHttpClient
@@ -12,8 +13,7 @@ object ApiClient {
 
     private const val BASE_URL = "https://api.pubg.com/"
     private const val TIMEOUT = 20L
-    private const val API_KEY =
-        "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5ZDc3ZWNhMC1lYjcwLTAxM2ItZGJiOS00MmY3ZTdiY2Q3MWIiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNjg2NTg5MjUzLCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InB1Ymctcm95YWwtc3RhIn0.uDax2C3EXxi8N9tQCkJFjPUzcrKbKB1LD-uaWASvRWg"
+    private const val API_KEY = PUBG_KEY
 
     private val okHttpClient = OkHttpClient.Builder()
         .connectTimeout(TIMEOUT, TimeUnit.SECONDS)

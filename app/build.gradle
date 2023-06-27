@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -18,7 +19,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures {
+        buildConfig = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -60,6 +63,7 @@ dependencies {
 
     lifecycle()
     navigation()
+    koin()
     glide()
     retrofit2()
     room()
@@ -69,6 +73,12 @@ dependencies {
 private void glide() {
     dependencies.implementation 'com.github.bumptech.glide:glide:4.14.2'
     dependencies.annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
+}
+
+private void koin() {
+    def version = "3.1.2"
+    dependencies.implementation "io.insert-koin:koin-android:$version"
+    dependencies.runtimeOnly 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
 }
 
 private void dagger() {

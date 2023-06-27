@@ -8,7 +8,6 @@ import com.example.battlegroundstats.domain.models.PlayerModeType
 
 class RemotePlayerMapper : ResponseMapper<BaseResponse<PlayerStatsResponse>, Player> {
 
-    //think about how to merge FPP and TPP objects
     override fun mapFromRemote(
         player: BaseResponse<PlayerStatsResponse>,
         mode: PlayerModeType
