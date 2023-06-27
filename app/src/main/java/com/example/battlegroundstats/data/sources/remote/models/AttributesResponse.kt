@@ -1,11 +1,15 @@
 package com.example.battlegroundstats.data.sources.remote.models
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class PlayerStatsResponse(@SerializedName("attributes") val attributes: AttributesResponse)
 
+@Keep
 data class AttributesResponse(@SerializedName("gameModeStats") val gameModes: GameModesResponse)
 
+@Keep
 data class GameModesResponse(
     @SerializedName("duo") val duo: BaseStatsResponse,
     @SerializedName("duo-fpp") val duoFPP: BaseStatsResponse,
@@ -15,6 +19,7 @@ data class GameModesResponse(
     @SerializedName("squad-fpp") val squadFPP: BaseStatsResponse
 )
 
+@Keep
 data class BaseStatsResponse(
     @SerializedName("kills") val kills: Int,
     @SerializedName("dBNOs") val knocked: Int,

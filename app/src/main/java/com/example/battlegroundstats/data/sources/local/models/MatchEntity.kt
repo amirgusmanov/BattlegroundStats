@@ -1,9 +1,11 @@
 package com.example.battlegroundstats.data.sources.local.models
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Keep
 @Entity(tableName = "match")
 data class MatchEntity(
     @PrimaryKey(autoGenerate = true)

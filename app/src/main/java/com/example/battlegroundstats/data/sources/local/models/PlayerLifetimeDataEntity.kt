@@ -1,12 +1,13 @@
 package com.example.battlegroundstats.data.sources.local.models
 
+import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 open class DataEntity
 
-//TODO: change longest kill type to double and delete deaths attribute from constructor
+@Keep
 @Entity(tableName = "player_lifetime")
 data class PlayerLifetimeDataEntity(
     @PrimaryKey(autoGenerate = true)
@@ -35,6 +36,7 @@ data class PlayerLifetimeDataEntity(
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
 ) : DataEntity()
 
+@Keep
 @Entity(tableName = "player_lifetime_solo")
 data class PlayerLifetimeSoloDataEntity(
     @PrimaryKey(autoGenerate = true)
@@ -62,6 +64,7 @@ data class PlayerLifetimeSoloDataEntity(
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
 ) : DataEntity()
 
+@Keep
 @Entity(tableName = "player_lifetime_duo")
 data class PlayerLifetimeDuoDataEntity(
     @PrimaryKey(autoGenerate = true)
@@ -90,6 +93,7 @@ data class PlayerLifetimeDuoDataEntity(
     @ColumnInfo("teammates_revived") val teammatesRev: Int,
 ) : DataEntity()
 
+@Keep
 @Entity(tableName = "player_lifetime_squad")
 data class PlayerLifetimeSquadDataEntity(
     @PrimaryKey(autoGenerate = true)
