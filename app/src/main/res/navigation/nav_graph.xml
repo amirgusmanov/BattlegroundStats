@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/recentMatchesFragment"
-        android:name="com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchesFragment"
+        android:name="com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchesFragmentList"
         android:label="fragment_recent_matches"
         tools:layout="@layout/fragment_matches_list" />
 

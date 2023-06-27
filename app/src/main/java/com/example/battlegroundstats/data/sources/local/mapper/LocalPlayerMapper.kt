@@ -2,27 +2,16 @@ package com.example.battlegroundstats.data.sources.local.mapper
 
 import com.example.battlegroundstats.data.sources.local.models.PlayerLifetimeSoloDataEntity
 import com.example.battlegroundstats.domain.models.Player
-import com.example.battlegroundstats.domain.models.PlayerModeType
-import com.example.battlegroundstats.domain.models.PlayerModeType.DUO
-import com.example.battlegroundstats.domain.models.PlayerModeType.SOLO
-import com.example.battlegroundstats.domain.models.PlayerModeType.SQUAD
 
 class LocalPlayerMapper : EntityMapper<PlayerLifetimeSoloDataEntity, Player> {
 
-    override fun mapFromEntity(player: PlayerLifetimeSoloDataEntity, mode: PlayerModeType): Player =
-        when (mode) {
-            SOLO -> mapStatsToPlayer(player)
-            DUO -> mapStatsToPlayer(player)
-            SQUAD -> mapStatsToPlayer(player)
-        }
+    override fun mapFromEntity(entity: PlayerLifetimeSoloDataEntity): Player =
+        mapStatsToPlayer(entity)
 
 
-    override fun mapToEntity(player: Player, mode: PlayerModeType): PlayerLifetimeSoloDataEntity =
-        when (mode) {
-            SOLO -> mapPlayerToSoloEntity(player)
-            DUO -> mapPlayerToSoloEntity(player)
-            SQUAD -> mapPlayerToSoloEntity(player)
-        }
+    override fun mapToEntity(model: Player): PlayerLifetimeSoloDataEntity =
+        mapPlayerToSoloEntity(model)
+
 
     private fun mapStatsToPlayer(player: PlayerLifetimeSoloDataEntity) = Player(
         kills = player.kills,

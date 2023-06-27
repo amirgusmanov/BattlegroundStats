@@ -31,15 +31,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="16dp"
                 android:orientation="vertical"
-                android:outlineAmbientShadowColor="@color/black"
-                android:outlineSpotShadowColor="@color/black"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="@color/transparent_background"
                 app:cardCornerRadius="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="UnusedAttribute">
@@ -130,7 +128,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/header_title_hk"

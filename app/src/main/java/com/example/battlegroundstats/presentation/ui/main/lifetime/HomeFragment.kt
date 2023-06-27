@@ -2,17 +2,19 @@ package com.example.battlegroundstats.presentation.ui.main.lifetime
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.battlegroundstats.R
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
+import com.example.battlegroundstats.presentation.ui.main.SharedViewModel
+import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.*
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -29,6 +31,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeFragmentViewModel by viewModels(
         factoryProducer = { HomeFragmentViewModel.factory() }
     )
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,15 +45,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val nickname = args.nickname
         val platform = args.platform
+
+        sharedViewModel.setNickname(nickname)
+        sharedViewModel.setPlatform(platform)
         if (nickname.isNotEmpty()) {
             viewModel.getPlayerStats(nickname, platform)
-        }
-
-        viewModel.status.observe(viewLifecycleOwner) { status ->
-            when (status!!) {
-                HomeFragmentStatus.LOADING -> hideUI()
-                HomeFragmentStatus.DONE -> showUI()
-            }
         }
 
         val pieChartKD: PieChart = binding.pieChart
@@ -58,56 +57,52 @@ class HomeFragment : Fragment() {
         pieChartKD.setPieChart()
         pieChartWL.setPieChart()
 
-        viewModel.playerStats.observe(viewLifecycleOwner) { playerFlow ->
-            viewLifecycleOwner.lifecycleScope.launch {
-                playerFlow.collect { player ->
-                    Log.d("Player", "$player")
+        viewModel.playerStats.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is Loading -> {
+                    hideUI()
+                }
 
-                    bind(
-                        player.kills,
-                        player.losses,
-                        player.hKillStreak,
-                        player.damageDealt,
-                        player.wins,
-                        player.losses,
-                        player.top10,
-                        player.knocked,
-                        player.headshots,
-                        player.assists,
-                        player.drivenDistance,
-                        player.swamDistance,
-                        player.walkedDistance,
-                        player.longestKill,
-                        player.teamKills,
-                        player.suicides,
-                        player.roadKills,
-                        player.boosts
-                    )
+                is Success -> {
+                    val playerFlow = state.data
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        playerFlow.collect { player ->
+                            bind(
+                                player.kills, player.losses, player.hKillStreak,
+                                player.damageDealt, player.wins, player.losses,
+                                player.top10, player.knocked, player.headshots,
+                                player.assists, player.drivenDistance, player.swamDistance,
+                                player.walkedDistance, player.longestKill, player.teamKills,
+                                player.suicides, player.roadKills, player.boosts
+                            )
 
-                    val entriesKD = listOf(
-                        PieEntry(player.kills.toFloat(), "Kills"),
-                        PieEntry(player.losses.toFloat(), "Deaths")
-                    )
-                    val entriesWL = listOf(
-                        PieEntry(player.wins.toFloat(), "Wins"),
-                        PieEntry(player.losses.toFloat(), "Losses")
-                    )
-                    val colors = listOf(
-                        ContextCompat.getColor(requireContext(), R.color.kill),
-                        ContextCompat.getColor(requireContext(), R.color.death)
-                    )
+                            val entriesKD = listOf(
+                                PieEntry(player.kills.toFloat(), "Kills"),
+                                PieEntry(player.losses.toFloat(), "Deaths")
+                            )
+                            val entriesWL = listOf(
+                                PieEntry(player.wins.toFloat(), "Wins"),
+                                PieEntry(player.losses.toFloat(), "Losses")
+                            )
+                            val colors = listOf(
+                                ContextCompat.getColor(requireContext(), R.color.kill),
+                                ContextCompat.getColor(requireContext(), R.color.death)
+                            )
 
-                    val dataSetKd = PieDataSet(entriesKD, "Player Statistics KD")
-                    dataSetKd.fix(colors)
-                    val dataSetWl = PieDataSet(entriesWL, "Player Statistics WL")
-                    dataSetWl.fix(colors)
+                            val dataSetKd = PieDataSet(entriesKD, "Player Statistics KD")
+                            dataSetKd.fix(colors)
+                            val dataSetWl = PieDataSet(entriesWL, "Player Statistics WL")
+                            dataSetWl.fix(colors)
 
-                    val dataKD = PieData(dataSetKd)
-                    val dataWL = PieData(dataSetWl)
-                    pieChartKD.data = dataKD
-                    pieChartWL.data = dataWL
-                    pieChartKD.invalidate()
-                    pieChartWL.invalidate()
+                            val dataKD = PieData(dataSetKd)
+                            val dataWL = PieData(dataSetWl)
+                            pieChartKD.data = dataKD
+                            pieChartWL.data = dataWL
+                            pieChartKD.invalidate()
+                            pieChartWL.invalidate()
+                        }
+                    }
+                    showUI()
                 }
             }
         }

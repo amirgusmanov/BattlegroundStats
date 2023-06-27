@@ -11,5 +11,9 @@
         <item name="android:fontFamily">@font/custom_font</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="Theme.BattlegroundStats" parent="Base.Theme.BattlegroundStats" />
 </resources>

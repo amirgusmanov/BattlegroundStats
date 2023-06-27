@@ -1,6 +1,7 @@
 package com.example.battlegroundstats.data.sources.remote.service
 
 import com.example.battlegroundstats.data.sources.remote.models.BaseResponse
+import com.example.battlegroundstats.data.sources.remote.models.MatchObjectResponse
 import com.example.battlegroundstats.data.sources.remote.models.PlayerResponse
 import com.example.battlegroundstats.data.sources.remote.models.PlayerStatsResponse
 import retrofit2.http.GET
@@ -25,6 +26,6 @@ interface PUBGApiService {
     suspend fun getMatch(
         @Path("platform") platform: String,
         @Path("matchId") matchId: String
-    )
+    ): MatchObjectResponse
 
 }
