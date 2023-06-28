@@ -10,7 +10,4 @@ interface PubgLocalRepository {
     suspend fun addMatches(matches: List<Match>): Boolean
 
     suspend fun getMatches(): List<Match>
-
-    suspend fun clearMatches()
-
 }

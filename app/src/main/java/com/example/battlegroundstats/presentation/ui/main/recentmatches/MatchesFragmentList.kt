@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.battlegroundstats.databinding.FragmentMatchesListBinding
 import com.example.battlegroundstats.domain.models.Match
 import com.example.battlegroundstats.presentation.ui.main.SharedViewModel
 import com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchesState.Loading
 import com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchesState.Success
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MatchesFragmentList : Fragment() {
 
@@ -21,9 +21,7 @@ class MatchesFragmentList : Fragment() {
     private val binding
         get() = _binding!!
 
-    private val viewModel: MatchesViewModel by viewModels(
-        factoryProducer = { MatchesViewModel.factory(requireContext()) }
-    )
+    private val viewModel: MatchesViewModel by viewModel()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(

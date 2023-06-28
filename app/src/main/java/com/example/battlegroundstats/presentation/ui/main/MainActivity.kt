@@ -57,5 +57,4 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
         binding.bottomNavView.visibility = View.GONE
         binding.toolbar.visibility = View.GONE
     }
-
 }
