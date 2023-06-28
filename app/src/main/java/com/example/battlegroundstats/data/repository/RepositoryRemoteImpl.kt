@@ -35,7 +35,7 @@ class RepositoryRemoteImpl(
             val matches: List<MatchResponse> = player.data[0].relationships.matches.data
             val recentMatches = mutableListOf<Match>()
 
-            for (matchResponse in matches.take(4)) {
+            for (matchResponse in matches.take(1)) {
                 val matchObjectResponse: MatchObjectResponse =
                     ApiClient.pubgService().getMatch(platform, matchResponse.id)
                 val playerStats = matchObjectResponse.players.find {
