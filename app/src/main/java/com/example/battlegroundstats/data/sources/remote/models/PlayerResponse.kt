@@ -4,7 +4,9 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class PlayerResponse(@SerializedName("data") val data: List<PlayerDataResponse>) {
+data class PlayerResponse(
+    @SerializedName("data") val data: List<PlayerDataResponse>
+) {
     val id: String
         get() = data.firstOrNull()?.id as String
 }
@@ -17,7 +19,9 @@ data class PlayerDataResponse(
 )
 
 @Keep
-data class RelationshipData<T>(val data: T)
+data class RelationshipData<T>(
+    @SerializedName("data") val data: T
+)
 
 @Keep
 data class RelationResponse(
@@ -25,4 +29,6 @@ data class RelationResponse(
 )
 
 @Keep
-data class MatchResponse(@SerializedName("id") val id: String)
+data class MatchResponse(
+    @SerializedName("id") val id: String
+)

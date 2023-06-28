@@ -13,12 +13,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.battlegroundstats.R
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
+import com.example.battlegroundstats.domain.models.Player
 import com.example.battlegroundstats.presentation.ui.main.SharedViewModel
 import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.*
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -51,60 +53,64 @@ class HomeFragment : Fragment() {
         if (nickname.isNotEmpty()) {
             viewModel.getPlayerStats(nickname, platform)
         }
-
-        val pieChartKD: PieChart = binding.pieChart
-        val pieChartWL: PieChart = binding.winLosePieChart
-        pieChartKD.setPieChart()
-        pieChartWL.setPieChart()
+        binding.setupChart()
 
         viewModel.playerStats.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is Loading -> {
                     hideUI()
                 }
-
+                is Error -> {
+                    Snackbar.make(
+                        binding.root,
+                        state.error.message ?: "Something went wrong",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
                 is Success -> {
-                    val playerFlow = state.data
-                    viewLifecycleOwner.lifecycleScope.launch {
-                        playerFlow.collect { player ->
-                            bind(
-                                player.kills, player.losses, player.hKillStreak,
-                                player.damageDealt, player.wins, player.losses,
-                                player.top10, player.knocked, player.headshots,
-                                player.assists, player.drivenDistance, player.swamDistance,
-                                player.walkedDistance, player.longestKill, player.teamKills,
-                                player.suicides, player.roadKills, player.boosts
-                            )
-
-                            val entriesKD = listOf(
-                                PieEntry(player.kills.toFloat(), "Kills"),
-                                PieEntry(player.losses.toFloat(), "Deaths")
-                            )
-                            val entriesWL = listOf(
-                                PieEntry(player.wins.toFloat(), "Wins"),
-                                PieEntry(player.losses.toFloat(), "Losses")
-                            )
-                            val colors = listOf(
-                                ContextCompat.getColor(requireContext(), R.color.kill),
-                                ContextCompat.getColor(requireContext(), R.color.death)
-                            )
-
-                            val dataSetKd = PieDataSet(entriesKD, "Player Statistics KD")
-                            dataSetKd.fix(colors)
-                            val dataSetWl = PieDataSet(entriesWL, "Player Statistics WL")
-                            dataSetWl.fix(colors)
-
-                            val dataKD = PieData(dataSetKd)
-                            val dataWL = PieData(dataSetWl)
-                            pieChartKD.data = dataKD
-                            pieChartWL.data = dataWL
-                            pieChartKD.invalidate()
-                            pieChartWL.invalidate()
-                        }
-                    }
+                    val player = state.data
+                    showPlayerStats(player)
                     showUI()
                 }
             }
+        }
+    }
+
+    private fun showPlayerStats(player: Player) = with(binding) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            bind(
+                player.kills, player.losses, player.hKillStreak,
+                player.damageDealt, player.wins, player.losses,
+                player.top10, player.knocked, player.headshots,
+                player.assists, player.drivenDistance, player.swamDistance,
+                player.walkedDistance, player.longestKill, player.teamKills,
+                player.suicides, player.roadKills, player.boosts
+            )
+
+            val entriesKD = listOf(
+                PieEntry(player.kills.toFloat(), "Kills"),
+                PieEntry(player.losses.toFloat(), "Deaths")
+            )
+            val entriesWL = listOf(
+                PieEntry(player.wins.toFloat(), "Wins"),
+                PieEntry(player.losses.toFloat(), "Losses")
+            )
+            val colors = listOf(
+                ContextCompat.getColor(requireContext(), R.color.kill),
+                ContextCompat.getColor(requireContext(), R.color.death)
+            )
+
+            val dataSetKd = PieDataSet(entriesKD, "Player Statistics KD")
+            dataSetKd.fix(colors)
+            val dataSetWl = PieDataSet(entriesWL, "Player Statistics WL")
+            dataSetWl.fix(colors)
+
+            val dataKD = PieData(dataSetKd)
+            val dataWL = PieData(dataSetWl)
+            pieChart.data = dataKD
+            winLosePieChart.data = dataWL
+            pieChart.invalidate()
+            winLosePieChart.invalidate()
         }
     }
 
@@ -178,5 +184,8 @@ class HomeFragment : Fragment() {
         progressBar.visibility = View.VISIBLE
         binding.scrollView.visibility = View.INVISIBLE
     }
-
+    private fun FragmentHomeBinding.setupChart(){
+        pieChart.setPieChart()
+        winLosePieChart.setPieChart()
+    }
 }

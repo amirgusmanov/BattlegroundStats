@@ -14,11 +14,18 @@ import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.delayFlow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 sealed interface HomeFragmentState {
     object Loading : HomeFragmentState
-    data class Success(val data: Flow<Player>) : HomeFragmentState
+    data class Success(val data: Player) : HomeFragmentState
+    data class Error(val error: Throwable) : HomeFragmentState
 }
 
 class HomeFragmentViewModel(
@@ -30,11 +37,12 @@ class HomeFragmentViewModel(
         get() = _playerStats
 
     fun getPlayerStats(nickname: String, platform: String) {
-        _playerStats.postValue(Loading)
-        viewModelScope.launch(Dispatchers.IO) {
-            val stats = getPlayerLifetimeStatsUseCase(nickname, platform)
-            delay(2000)
-            _playerStats.postValue(Success(stats))
+        viewModelScope.launch {
+            getPlayerLifetimeStatsUseCase(nickname, platform)
+                .onStart { _playerStats.postValue(Loading) }
+                .flowOn(Dispatchers.IO)
+                .catch { _playerStats.postValue(HomeFragmentState.Error(it)) }
+                .collectLatest { _playerStats.postValue(Success(it)) }
         }
     }
 
