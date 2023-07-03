@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.battlegroundstats.R
@@ -22,6 +21,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
@@ -30,9 +30,7 @@ class HomeFragment : Fragment() {
     private val binding
         get() = _binding!!
 
-    private val viewModel: HomeFragmentViewModel by viewModels(
-        factoryProducer = { HomeFragmentViewModel.factory() }
-    )
+    private val viewModel: HomeFragmentViewModel by viewModel()
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(

@@ -4,20 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.battlegroundstats.data.repository.RepositoryRemoteImpl
 import com.example.battlegroundstats.domain.interactor.GetPlayerLifetimeStatsUseCase
 import com.example.battlegroundstats.domain.models.Player
 import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.Loading
 import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.Success
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.delayFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -45,15 +38,4 @@ class HomeFragmentViewModel(
                 .collectLatest { _playerStats.postValue(Success(it)) }
         }
     }
-
-    companion object {
-        fun factory() = viewModelFactory {
-            initializer {
-                val useCase =
-                    GetPlayerLifetimeStatsUseCase(RepositoryRemoteImpl())
-                HomeFragmentViewModel(useCase)
-            }
-        }
-    }
-
 }

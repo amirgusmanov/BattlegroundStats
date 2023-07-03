@@ -75,15 +75,15 @@ class MatchRecyclerViewAdapter(
             createdTime.text = match.matchTimeCreated
 
             val mapImageUrl = when (match.mapName) {
-                ERANGEL_REMASTERED, ERANGEL_MAIN -> erangel_url
-                PARAMO -> paramo_url
-                MIRAMAR -> miramar_url
-                VIKENDI -> vikendi_url
-                HAVEN -> haven_url
-                DESTON -> deston_url
-                CAMP_JACKAL, SANHOK -> camp_url
-                KARAKIN -> karakin_url
-                TAEGO -> taego_url
+                "Erangel" -> erangel_url
+                "Paramo" -> paramo_url
+                "Miramar" -> miramar_url
+                "Vikendi" -> vikendi_url
+                "Haven" -> haven_url
+                "Deston" -> deston_url
+                "Sanhok" -> camp_url
+                "Karakin" -> karakin_url
+                "Taego" -> taego_url
                 else -> ""
             }
 

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardview"
         android:layout_width="350dp"
         android:layout_height="240dp"
@@ -55,11 +55,11 @@
                     android:importantForAutofill="no"
                     android:inputType="text"
                     android:shadowColor="@color/white"
-                    android:textColor="@color/white"
                     android:text="TGLTN"
+                    android:textColor="@color/white"
                     android:textColorHighlight="@color/white"
                     android:textColorLink="@color/white"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    tools:ignore="HardcodedText,SpeakableTextPresentCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -118,15 +118,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/enter_pubg_username_not_your_steam_psn_xbox_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardview" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
