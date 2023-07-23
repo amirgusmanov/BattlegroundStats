@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.battlegroundstats.databinding.FragmentMatchBinding
 import com.example.battlegroundstats.databinding.ViewEmptyItemBinding
 import com.example.battlegroundstats.presentation.ui.main.recentmatches.MatchRecyclerViewAdapter.MatchesViewHolder
@@ -87,14 +85,12 @@ class MatchRecyclerViewAdapter(
                 else -> ""
             }
 
-            if (mapImageUrl.isNotEmpty()) {
+            if (mapImageUrl.isNotEmpty())
                 Glide.with(mapImage)
                     .load(mapImageUrl)
-                    .apply(RequestOptions().transform(RoundedCorners(16)))
+                    .circleCrop()
                     .into(mapImage)
-            } else {
-                mapImage.setImageDrawable(null)
-            }
+            else mapImage.setImageDrawable(null)
         }
     }
 
