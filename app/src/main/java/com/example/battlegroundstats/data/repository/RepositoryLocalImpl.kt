@@ -9,8 +9,8 @@ import com.example.battlegroundstats.domain.repository.PubgLocalRepository
 
 class RepositoryLocalImpl(
     private val db: AppDatabase,
-    private val playerMapper: LocalPlayerMapper = LocalPlayerMapper(),
-    private val matchMapper: LocalMatchMapper = LocalMatchMapper()
+    private val playerMapper: LocalPlayerMapper,
+    private val matchMapper: LocalMatchMapper
 ) : PubgLocalRepository {
 
     override suspend fun addPlayer(player: Player): Boolean {
