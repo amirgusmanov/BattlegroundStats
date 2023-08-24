@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
                 is Loading -> {
                     hideUI()
                 }
+
                 is Error -> {
                     Snackbar.make(
                         binding.root,
@@ -65,9 +66,9 @@ class HomeFragment : Fragment() {
                         Snackbar.LENGTH_SHORT
                     ).show()
                 }
+
                 is Success -> {
-                    val player = state.data
-                    showPlayerStats(player)
+                    showPlayerStats(state.data)
                     showUI()
                 }
             }
@@ -182,7 +183,8 @@ class HomeFragment : Fragment() {
         progressBar.visibility = View.VISIBLE
         binding.scrollView.visibility = View.INVISIBLE
     }
-    private fun FragmentHomeBinding.setupChart(){
+
+    private fun FragmentHomeBinding.setupChart() {
         pieChart.setPieChart()
         winLosePieChart.setPieChart()
     }

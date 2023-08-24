@@ -24,9 +24,12 @@ class RepositoryRemoteImpl(
         nickname: String,
         mode: PlayerModeType
     ): Flow<Player> = flow {
-        val playerId = api.searchPlayerByNickname(platform, nickname).id
-        val player = api.getPlayerStats(platform, playerId)
-        emit(playerMapper.mapFromRemote(player, mode))
+        emit(
+            playerMapper.mapFromRemote(
+                api.getPlayerStats(platform, api.searchPlayerByNickname(platform, nickname).id),
+                mode
+            )
+        )
     }
 
     override suspend fun getPlayerMatches(platform: String, nickname: String): Flow<List<Match>> =

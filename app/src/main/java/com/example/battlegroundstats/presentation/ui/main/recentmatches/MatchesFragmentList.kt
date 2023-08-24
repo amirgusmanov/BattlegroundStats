@@ -74,6 +74,7 @@ class MatchesFragmentList : Fragment() {
         }
     }
 
+    //TODO
     private fun Match.mapNameConverter(): String =
         when (this.mapName) {
             "Baltic_Main" -> "Erangel"

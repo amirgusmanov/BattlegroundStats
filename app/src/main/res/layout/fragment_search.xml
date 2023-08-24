@@ -23,13 +23,14 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardview"
         android:layout_width="350dp"
-        android:layout_height="240dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         app:cardCornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextSizeCheck">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -43,7 +44,6 @@
                 android:layout_margin="16dp"
                 android:hint="@string/enter_player_name"
                 android:textColorHint="@color/white"
-                app:hintTextColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -63,6 +63,27 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/platform_menu"
+                style="@style/Widget.App.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="@string/platform_hint"
+                app:layout_constraintEnd_toStartOf="@+id/search_button"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_input_layout">
+
+                <AutoCompleteTextView
+                    android:id="@+id/platform_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/search_button"
                 style="@style/Widget.Material3.Button.OutlinedButton"
@@ -76,45 +97,8 @@
                 app:cornerRadius="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/radio_btn_group"
-                app:layout_constraintTop_toBottomOf="@+id/text_input_layout" />
-
-            <RadioGroup
-                android:id="@+id/radio_btn_group"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/search_button"
-                app:layout_constraintEnd_toStartOf="@+id/search_button"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/search_button"
-                tools:layout_editor_absoluteY="575dp">
-
-                <RadioButton
-                    android:id="@+id/steam_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/steam"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <RadioButton
-                    android:id="@+id/psn_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/playstation"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <RadioButton
-                    android:id="@+id/xbox_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xbox"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-            </RadioGroup>
+                app:layout_constraintTop_toBottomOf="@+id/platform_menu" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
