@@ -12,7 +12,7 @@ This is an Android application designed to provide users with access to their in
 
 This app has been build using clean architecture, follows the MVVM (Model-View-ViewModel) architectural pattern and data-caching using a repository to fetch local or remote data.
 
-<img src="images/mvvm_diagram_1.png" width="360" height="480">
+<img src="images/mvvm_diagram_1.png" width="480" height="360">
 
 ### Api Service
 
