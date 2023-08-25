@@ -26,3 +26,17 @@ const val karakin_url =
 
 const val taego_url =
     "https://static.wikia.nocookie.net/battlegrounds_gamepedia_en/images/7/7c/Taego_Farm.jpg"
+
+val mapNames = mapOf(
+    "Baltic_Main" to "Erangel",
+    "Erangel_Main" to "Erangel",
+    "Chimera_Main" to "Paramo",
+    "Desert_Main" to "Miramar",
+    "DihorOtok_Main" to "Vikendi",
+    "Heaven_Main" to "Haven",
+    "Kiki_Main" to "Deston",
+    "Range_Main" to "Sanhok",
+    "Savage_Main" to "Sanhok",
+    "Summerland_Main" to "Karakin",
+    "Tiger_Main" to "Taego"
+)

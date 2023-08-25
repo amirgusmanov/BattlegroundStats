@@ -61,7 +61,7 @@ class MatchesFragmentList : Fragment() {
         return if (matches.isNotEmpty()) {
             matches.map { match ->
                 Content.MatchItem(
-                    mapName = match.mapNameConverter(),
+                    mapName = mapNames[match.mapName] ?: "",
                     winPlace = match.winPlace,
                     damageDealt = match.damageDealt,
                     kills = match.kills,
@@ -73,23 +73,6 @@ class MatchesFragmentList : Fragment() {
             listOf(Content.EmptyItem)
         }
     }
-
-    //TODO
-    private fun Match.mapNameConverter(): String =
-        when (this.mapName) {
-            "Baltic_Main" -> "Erangel"
-            "Erangel_Main" -> "Erangel"
-            "Chimera_Main" -> "Paramo"
-            "Desert_Main" -> "Miramar"
-            "DihorOtok_Main" -> "Vikendi"
-            "Heaven_Main" -> "Haven"
-            "Kiki_Main" -> "Deston"
-            "Range_Main" -> "Sanhok"
-            "Savage_Main" -> "Sanhok"
-            "Summerland_Main" -> "Karakin"
-            "Tiger_Main" -> "Taego"
-            else -> ""
-        }
 
     private fun fetchMatches() {
         val nickname = sharedViewModel.nickname.value

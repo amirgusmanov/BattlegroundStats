@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.battlegroundstats.R
@@ -14,7 +13,6 @@ import com.example.battlegroundstats.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var spinner: Spinner
     private var _binding: FragmentSearchBinding? = null
     private val binding
         get() = _binding!!
