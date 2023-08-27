@@ -66,7 +66,9 @@ class MatchesFragmentList : Fragment() {
                     damageDealt = match.damageDealt,
                     kills = match.kills,
                     gameMode = match.gameMode,
-                    matchTimeCreated = match.matchTimeCreated
+                    matchTimeCreated = match
+                        .matchTimeCreated
+                        .replace(Regex("[a-zA-Z]"), " ")
                 )
             }
         } else {

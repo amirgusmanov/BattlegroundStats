@@ -17,7 +17,7 @@
         <item name="android:layout_margin">16dp</item>
         <item name="dividerColor">@color/white</item>
     </style>
-    
+
     <style name="CustomTextInputLayout">
         <item name="boxStrokeColor">@color/white</item>
         <item name="boxStrokeErrorColor">@color/white</item>
@@ -33,7 +33,9 @@
         <item name="hintTextColor">@color/white</item>
         <item name="colorPrimary">@color/white</item>
         <item name="colorOnSurface">@color/white</item>
-        <item name="autoCompleteTextViewStyle">@style/Widget.Material3.AutoCompleteTextView.OutlinedBox</item>
+        <item name="autoCompleteTextViewStyle">
+            @style/Widget.Material3.AutoCompleteTextView.OutlinedBox
+        </item>
     </style>
 
     <style name="Toolbar.Title" parent="TextAppearance.MaterialComponents.Headline6">

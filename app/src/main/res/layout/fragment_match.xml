@@ -23,16 +23,14 @@
                 android:layout_margin="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/logo"
+                app:layout_constraintTop_toTopOf="parent"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:srcCompat="@drawable/logo" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/map_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/CommonMaterialTextView"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/custom_font"
                 android:text="Eirangel"
                 android:textColor="@color/harvestGold"
                 android:textSize="24sp"
@@ -42,9 +40,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/kills"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/custom_font"
+                style="@style/CommonMaterialTextView"
                 android:text="Kills 999"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -55,10 +51,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/damage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/CommonMaterialTextView"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/custom_font"
                 android:text="Damage 999"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -69,10 +63,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/game_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/CommonMaterialTextView"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/custom_font"
                 android:text="@string/squad"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -96,10 +88,8 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/place"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/CommonMaterialTextView"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/custom_font"
                 android:text="10"
                 android:textColor="@color/harvestGold"
                 android:textSize="38sp"
@@ -115,8 +105,9 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="26-06-2023 03:40"
+                android:fontFamily="@font/custom_font2"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/place"
