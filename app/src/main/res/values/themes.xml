@@ -17,9 +17,16 @@
         <item name="android:layout_margin">16dp</item>
         <item name="dividerColor">@color/white</item>
     </style>
+    
+    <style name="CustomTextInputLayout">
+        <item name="boxStrokeColor">@color/white</item>
+        <item name="boxStrokeErrorColor">@color/white</item>
+        <item name="hintTextColor">@color/white</item>
+    </style>
 
     <style name="Widget.App.ExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.ExposedDropdownMenu</item>
+        <item name="boxStrokeColor">@color/white</item>
     </style>
 
     <style name="ThemeOverlay.App.ExposedDropdownMenu" parent="">

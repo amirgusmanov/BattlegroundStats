@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:title="@string/app_name"
+            app:title="Lifetime"
             app:titleTextAppearance="@style/Toolbar.Title"
             app:titleTextColor="@color/white" />
 

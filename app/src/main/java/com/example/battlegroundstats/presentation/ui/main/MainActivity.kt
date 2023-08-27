@@ -30,8 +30,14 @@ class MainActivity : AppCompatActivity(), OnItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val navController = navHostFragment.navController
         when (item.itemId) {
-            R.id.navigation_player -> navController.navigate(R.id.homeFragment)
-            R.id.recent_matches -> navController.navigate(R.id.recentMatchesFragment)
+            R.id.navigation_player -> {
+                navController.navigate(R.id.homeFragment)
+                binding.toolbar.title = "Lifetime"
+            }
+            R.id.recent_matches -> {
+                navController.navigate(R.id.recentMatchesFragment)
+                binding.toolbar.title = "Matches"
+            }
         }
         return true
     }
