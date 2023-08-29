@@ -1,6 +1,5 @@
 package com.example.battlegroundstats.presentation.ui.main.lifetime
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +13,9 @@ import com.example.battlegroundstats.R
 import com.example.battlegroundstats.databinding.FragmentHomeBinding
 import com.example.battlegroundstats.domain.models.Player
 import com.example.battlegroundstats.presentation.ui.main.SharedViewModel
-import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.*
+import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.Error
+import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.Loading
+import com.example.battlegroundstats.presentation.ui.main.lifetime.HomeFragmentState.Success
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -38,6 +39,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -77,14 +79,7 @@ class HomeFragment : Fragment() {
 
     private fun showPlayerStats(player: Player) = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
-            bind(
-                player.kills, player.losses, player.hKillStreak,
-                player.damageDealt, player.wins, player.losses,
-                player.top10, player.knocked, player.headshots,
-                player.assists, player.drivenDistance, player.swamDistance,
-                player.walkedDistance, player.longestKill, player.teamKills,
-                player.suicides, player.roadKills, player.boosts
-            )
+            binding.player = player
 
             val entriesKD = listOf(
                 PieEntry(player.kills.toFloat(), "Kills"),
@@ -111,52 +106,6 @@ class HomeFragment : Fragment() {
             pieChart.invalidate()
             winLosePieChart.invalidate()
         }
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun bind(
-        kill: Int,
-        death: Int,
-        hKillStreak: Int,
-        dmgDealt: Double,
-        winsText: Int,
-        lossesText: Int,
-        top10Val: Int,
-        knocked: Int,
-        headshots: Int,
-        assists: Int,
-        drivenDist: Double,
-        swamDist: Double,
-        walkDist: Double,
-        longestKill: Double,
-        teamKill: Int,
-        suicide: Int,
-        roadKill: Int,
-        boosts: Int
-    ) = with(binding) {
-        kills.text = kill.toString()
-        deaths.text = death.toString()
-        highestKillstreak.text = hKillStreak.toString()
-        damageDealtValue.text = dmgDealt.toString()
-        wins.text = winsText.toString()
-        losses.text = lossesText.toString()
-        top10Value.text = top10Val.toString()
-        knockedVal.text = knocked.toString()
-        headshotsVal.text = headshots.toString()
-        assistsVal.text = assists.toString()
-        drivenDistanceVal.text = "$drivenDist m"
-        swamDistanceVal.text = "$swamDist m"
-        walkDistanceVal.text = "$walkDist m"
-        longestKillVal.text = "$longestKill m"
-        teamkillsVal.text = teamKill.toString()
-        suicidesVal.text = suicide.toString()
-        roadKillsVal.text = roadKill.toString()
-        boostsVal.text = boosts.toString()
-
-
-        val kdVal: Float = kill.toFloat() / death.toFloat()
-        val formatted = String.format("%.2f", kdVal)
-        kd.text = "KILLS DEATHS $formatted"
     }
 
     private fun PieChart.setPieChart() {
