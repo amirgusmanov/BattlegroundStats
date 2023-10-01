@@ -17,6 +17,7 @@
     <string name="playstation">playstation</string>
     <string name="enter_pubg_username_not_your_steam_psn_xbox_name">Enter PUBG username, NOT your steam/psn/xbox name!</string>
     <string name="platform_hint">Choose platform</string>
+    <string name="lifetime">Lifetime</string>
 
     <string-array name="platform_options">
         <item>steam</item>
